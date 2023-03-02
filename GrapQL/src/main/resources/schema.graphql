@@ -1,0 +1,37 @@
+type Query {
+   userProfiles: [ UserProfile ]
+   userProfilesByAge(age: Int): [ UserProfile ]
+   userAddress:  [ UserAddress ]
+}
+
+type UserCredential {
+   userId: ID!
+   userCredential: String!
+}
+
+type UserAddress {
+   userId: ID!
+   userAddressLine1: String!
+   userAddressLine2: String
+   userCity: String!
+   userState: String!
+   userZipCode: String!
+}
+
+type UserDetail {
+   userId: ID!
+   userAge: Int!
+   userFirstName: String!
+   userLastName: String!
+   userGender: String
+}
+
+type UserProfile {
+   userId: ID!
+   userName: String!
+   userEmail: String!
+   userActive: Boolean!
+   userDetail: UserDetail
+   userCredential: UserCredential
+   userAddress: UserAddress
+}

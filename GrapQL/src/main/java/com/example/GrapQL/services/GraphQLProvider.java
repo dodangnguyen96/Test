@@ -23,7 +23,7 @@ import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
 
 @Service
-public class GraphQLProvider {
+public class GraphQLProvider  {
     private GraphQL _graphQL;
     @Autowired
     private UserAddressDataFetcher userAddressDataFetcher;

@@ -2,6 +2,9 @@ package com.example.teslocal;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JsonConversion {
     public static void main(String[] args) {
         String inputJson = "[\n" +
@@ -28,21 +31,15 @@ public class JsonConversion {
     public static String convertJson(String inputJson) {
         try {
             JsonNode root = new ObjectMapper().readTree(inputJson);
-            StringBuilder sb = new StringBuilder("[\n");
-
-            for (JsonNode node : root) {
-                JsonNode medicationNode = node.get("medication");
-                if (medicationNode != null) {
-                    int medicationID = medicationNode.get("medicationID").asInt();
-                    String drugname = medicationNode.get("drugname").asText();
-                    sb.append(String.format("    {\"medicationID\": %d, \"drugname\": \"%s\"},\n", medicationID, drugname));
-                }
+            List<String> data = new ArrayList<>();
+            for(int i=0;i<=1;i++){
+                data.add(root.get(i).toString());
             }
 
-            sb.setLength(sb.length() - 2); // Remove the trailing comma and newline
-            sb.append("\n]");
 
-            return sb.toString();
+
+
+return data.toString();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

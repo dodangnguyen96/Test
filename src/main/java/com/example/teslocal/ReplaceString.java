@@ -1,12 +1,16 @@
 package com.example.teslocal;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ReplaceString {
     public static void main(String[] args) {
-        String json = "{\n  \"service\": \"dental\",\n  \"plan\": \"basic\"\n,\n  \"npi\": 12321321\n}";
-//        String json = "";
+        String json = "{\"service\":\"dental\",\"plan\":\"basic\",\"npi\": 12321321,\"service\":\"dental\"}";
 
-// Remove double quotes around keys
-        String modifiedJson = json.replaceAll("\"(\\w+)\":", "$1:").replaceAll("\\{",",").replaceAll("}","").trim();
+        // Replace key-value pairs and curly braces
+        Pattern pattern = Pattern.compile("\"(\\w+)\":|\\{|\\}");
+        Matcher matcher = pattern.matcher(json);
+        String modifiedJson = matcher.replaceAll(match -> match.group(1) != null ? match.group(1) + ":" : ",").trim();
 
         System.out.println(modifiedJson);
     }

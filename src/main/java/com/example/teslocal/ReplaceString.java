@@ -42,26 +42,10 @@ public class ReplaceString {
         result.append(json, lastMatchEnd, json.length());
 
         String arguments = result.toString().trim();
-        arguments = arguments.isEmpty() ? arguments : String.format("%s)", arguments);
+        arguments = arguments.isEmpty() ? arguments : String.format("(%s)", arguments);
        return arguments;
 
     }
-    Matcher matcher = pattern.matcher(functionCall.getArguments());
-    StringBuilder result = new StringBuilder();
-    int lastMatchEnd = 0;
 
-while (matcher.find()) {
-        result.append(functionCall.getArguments(), lastMatchEnd, matcher.start());
-        if (matcher.group(1) != null) {
-            result.append(matcher.group(1)).append(":");
-        }
-        lastMatchEnd = matcher.end();
-    }
-
-result.append(functionCall.getArguments(), lastMatchEnd, functionCall.getArguments().length());
-
-    String arguments = result.toString().trim();
-    arguments = arguments.isEmpty() ? arguments : String.format("%s)", arguments);
-this.query = String.format("%s%s{code data error}}", functionCall.getName(), arguments);
 
 }
